@@ -17,10 +17,6 @@ on:
       - stage
       - release
   workflow_dispatch: {}
-# GitHub token permissions for post-scan actions. Required for built-in GITHUB_TOKEN; if using a PAT with equivalent scopes, permissions block can be commented out.
-permissions:
-  contents: write               # Required to push changes or create fix branches
-  pull-requests: write          # Required to add comments or create fix pull requests
 jobs:
   blackducksca:
     runs-on: self-hosted
@@ -35,7 +31,3 @@ jobs:
           ### SCANNING: Required fields
           blackducksca_url: ${{ vars.BLACKDUCKSCA_URL }}
           blackducksca_token: ${{ secrets.BLACKDUCKSCA_TOKEN }}
-          ### GITHUB TOKEN
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # Required when PR comments or sarif reports enabled
-          ### FIX PULL REQUEST CREATION
-          blackducksca_fixpr_enabled: true
